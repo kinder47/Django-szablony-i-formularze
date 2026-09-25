@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ project_name }}</title>
+</head>
+<body>
+{% extends "shop/base.html" %}
+
+{% block content %}
+<h1>{{ project_name }}</h1>
+<p>Witaj, {{ user_name }}!</p>
+{% endblock %}
+</body>
+</html>

@@ -6,7 +6,7 @@ app_name = "shop"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("about/", views.about, name="about"),
-    path("api/status/", views.status, name="status"),
-    path("admin-panel/", views.forbidden, name="forbidden"),
+    path("products/", views.product_list, name="product_list"),
+    path("products/add/", views.product_add, name="product_add"),
+    path("products/<int:product_id>/", views.product_detail, name="product_detail"),
 ]

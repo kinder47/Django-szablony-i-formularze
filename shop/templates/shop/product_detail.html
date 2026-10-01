@@ -1,7 +1,14 @@
 {% extends "shop/base.html" %}
+
 {% block content %}
-<h1>{{ product.name }}</h1>
-<p>Cena: {{ product.price }} zł</p>
-<p>Dostępny: {{ product.is_available|yesno:"tak,nie" }}</p>
-<a href="{% url 'shop:product_list' %}">Wróć</a>
+<div style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; border-radius: 5px;">
+    <h2>Szczegóły produktu: {{ product.name }}</h2>
+    <ul>
+        <li><strong>ID:</strong> {{ product.id }}</li>
+        <li><strong>Cena:</strong> {{ product.price }} zł</li>
+        <li><strong>Kategoria:</strong> {{ product.category }}</li>
+        <li><strong>Aktualnie na stanie:</strong> {{ product.is_available|yesno:"Tak,Nie,Brak danych" }}</li>
+    </ul>
+    <p><a href="{% url 'shop:product_list' %}">« Powrót do listy produktów</a></p>
+</div>
 {% endblock %}

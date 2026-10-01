@@ -1,4 +1,4 @@
-from .forms import ProductForm, SearchForm
+from .forms import ProductForm, SearchForm, render
 
 
 def product_list(request):
@@ -10,4 +10,4 @@ def product_list(request):
             products = [p for p in products if q.lower() in p["name"].lower()]
         if form.cleaned_data["only_available"]:
             products = [p for p in products if p["is_available"]]
-    return render(request, "shop/product_list.html", {"products": products, "form": form})
+    return render(request, "shop/product_list.html", {"0products": products, "form": form})

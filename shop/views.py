@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http import Http404  # <-- MUSISZ DODAĆ TEN IMPORT
+from django.http import Http404
+from .forms import ProductForm
+
 
 # Rozszerzona lista do dokładnie 5 elementów (dodano ID 4 i 5)
 PRODUCTS = [

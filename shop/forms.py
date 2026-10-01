@@ -1,13 +1,25 @@
-from .forms import ProductForm, SearchForm, render
+from django import forms
 
+class SearchForm(forms.Form):
+    q = forms.CharField(
+        required=False,
+        label="Szukaj produktu",
+        widget=forms.TextInput(attrs={'placeholder': 'Wpisz nazwę...'})
+    )
+    only_available = forms.BooleanField(
+        required=False,
+        label="Tylko dostępne produkty"
+    )
 
-def product_list(request):
-    form = SearchForm(request.GET)
-    products = PRODUCTS
-    if form.is_valid():
-        q = form.cleaned_data["q"]
-        if q:
-            products = [p for p in products if q.lower() in p["name"].lower()]
-        if form.cleaned_data["only_available"]:
-            products = [p for p in products if p["is_available"]]
-    return render(request, "shop/product_list.html", {"0products": products, "form": form})
+class ProductForm(forms.Form):
+    CATEGORY_CHOICES = [
+        ('elektronika', 'Elektronika'),
+        ('odziez', 'Odzież'),
+        ('dom', 'Dom i Ogród'),
+    ]
+
+    name = forms.CharField(max_length=100, label="Nazwa produktu")
+    price = forms.DecimalField(max_digits=10, decimal_places=2, label="Cena (zł)")
+    category = forms.ChoiceField(choices=CATEGORY_CHOICES, label="Kategoria")
+    is_available = forms.BooleanField(required=False, initial=True, label="Dostępny w sklepie")
+    description = forms.CharField(widget=forms.Textarea, required=False, label="Opis produktu")
